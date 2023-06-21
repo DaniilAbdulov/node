@@ -1,27 +1,24 @@
-function solve(compasses, gears, tablets) {
-    function sevenPoints(c,g,t){
-        if(c === g && g === t){
-            return c * 7
-        }else{
-            let one = c;
-            let two = g;
-            let three = t;
-            let count = 0;
-            while(one != 0 && two != 0 && three!=0){
-                one -= 1;
-                two -= 1;
-                three -=1;
-                count += 7;
-            }
-            return count;
-        }
-    }
-    let seven = sevenPoints(compasses,gears,tablets);
-    function squares(c,g,t){
-        return c**2 + g**2 + t**2
-    }
-    let square = squares(compasses, gears, tablets);
-    return seven + square
+var lengthOfLongestSubstring = function(s) {
+    const arrOfString = [];
+    let string = '';
+    let letter = ''; 
+    function searchSubString(s){
+        let cache = new Set();
+        for(let i = 0; i < s.length; i++){
+            letter = s[i];
+            string += letter;
+            if(cache.has(letter)){
 
-  }
-console.log( solve(2,1,1) )
+                cache.clear();
+                
+            }else{
+                cache.add(letter)
+            }
+            arrOfString.push(Array.from(cache).length)
+        }
+        
+    }
+    searchSubString(s);
+    return Math.max(...arrOfString)
+};
+console.log( lengthOfLongestSubstring("dvdf") )
