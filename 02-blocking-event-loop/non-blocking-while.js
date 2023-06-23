@@ -1,7 +1,7 @@
 const fs = require('fs');
 let isRunning = true;
 
-setTimeout(()=>isRunning = false , 100)
+setTimeout(()=>isRunning = false , 1)
 process.nextTick( ()=>console.log('Next Tick') )
 
 function setImmediatePromise(){
