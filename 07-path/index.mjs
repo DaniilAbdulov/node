@@ -10,7 +10,7 @@ console.log(path.basename(filePath)); //последняя часть пути
 
 console.log(path.dirname(filePath)); //c:\Users\Daniil\Desktop\node путь без названия файла
 
-console.log(path.resolve(relativePath));
+console.log(path.resolve(relativePath)); //C:\Users\Daniil\Desktop\node\subfolder
 
 console.log(path.extname(filePath)); //.js расширение файла
 console.log(path.extname(relativePath)); //пустая строка
