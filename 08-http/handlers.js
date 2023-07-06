@@ -2,6 +2,7 @@ const comments = require("./data.js");
 const fs = require("fs");
 const qs = require("querystring");
 
+//Передача html файла
 function getHome(req, res) {
     fs.readFile("./08-http/files/comment-form.html", (err, data) => {
         if (err) {
@@ -11,7 +12,7 @@ function getHome(req, res) {
         } else {
             res.statusCode = 200;
             res.setHeader("Content-type", "text/html");
-            res.end(data);
+            res.end(data); //передаем ответ
         }
     });
 }
@@ -22,33 +23,35 @@ function getHTML(req, res) {
     res.write("<html><body><div>");
     res.write("<h1>Greetings from the http server</h1>");
     res.write("</div></body></html>");
-    res.end();
+    res.end(); //передаем ответ
 }
 function getText(req, res) {
     res.statusCode = 200;
     res.setHeader("Content-type", "text/plain");
-    res.end("This is plain text");
+    res.end("This is plain text"); //передаем ответ
 }
 function getComments(req, res) {
     res.statusCode = 200;
     res.setHeader("Content-type", "application/json");
-    res.end(JSON.stringify(comments));
+    res.end(JSON.stringify(comments)); //передаем ответ
 }
 
 function handleNotFound(req, res) {
     res.statusCode = 404;
     res.setHeader("Content-type", "text/html");
-    res.end("<h1>Page not found</h1>");
+    res.end("<h1>Page not found</h1>"); //передаем ответ
 }
 
 function postComment(req, res) {
     res.setHeader("Content-type", "text/plain");
 
     if (req.headers["content-type"] === "application/x-www-form-urlencoded") {
+        //если тип контента форма
         let body = "";
         req.on("data", (chunck) => {
             body += chunck.toString();
         });
+        //вывод после отправки комментария
         req.on("end", () => {
             try {
                 const comment = qs.parse(body);
@@ -64,6 +67,7 @@ function postComment(req, res) {
             }
         });
     } else if (req.headers["content-type"] === "application/json") {
+        //если тип контента json файл
         let commentJSON = "";
 
         req.on("data", (chunk) => {
@@ -82,7 +86,7 @@ function postComment(req, res) {
         });
     } else {
         res.statusCode = 400;
-        res.end("Data must be in the JSON format or as form");
+        res.end("Data must be in the JSON format or as form"); //передаем ответ
     }
 }
 

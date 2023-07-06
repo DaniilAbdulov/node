@@ -8,7 +8,7 @@ const {
     postComment,
     getHome,
 } = require("./handlers.js");
-
+//req - запрос res-ответ
 const server = http.createServer((req, res) => {
     if (req.method === "GET" && req.url === "/") {
         return getHome(req, res);
