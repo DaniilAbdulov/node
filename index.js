@@ -1,2 +1,4 @@
 //for tasks from LeetCode and CodeWars
-console.log(arguments.callee.toString());
+function rotate(str) {
+    //code here
+}
