@@ -1,3 +1,4 @@
+//C:\Users\Daniil\Documents\node\14-todo_list\createTable.js
 const pool = require("./db");
 
 pool.query(

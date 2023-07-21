@@ -1,3 +1,4 @@
+//C:\Users\Daniil\Documents\node\14-todo_list\controllers\getHomePage.js
 const fs = require("fs");
 function getHomePage(req, res) {
     fs.readFile("./files/page.html", (err, data) => {

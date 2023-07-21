@@ -1,5 +1,4 @@
-const { password } = require("pg/lib/defaults");
-
+//C:\Users\Daniil\Documents\node\14-todo_list\db.js
 const Pool = require("pg").Pool;
 const pool = new Pool({
     user: "postgres",
