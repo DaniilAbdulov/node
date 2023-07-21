@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>This is my first TO DO list</h1>
+        <form action="/tasks" method="post">
+            <input type="text" name="task" id="" />
+            <button type="submit">Добавить</button>
+        </form>
+        <h2>To Do list</h2>
+        <ul id="tasks"></ul>
+        <script>
+            fetch("/tasks")
+                .then((response) => response.json())
+                .then((tasks) => {
+                    const tasksList = document.getElementById("tasks");
+                    tasks.forEach((task) => {
+                        const li = document.createElement("li");
+                        li.innerText = task.task;
+                        tasksList.appendChild(li);
+                    });
+                });
+        </script>
+    </body>
+</html>
