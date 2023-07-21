@@ -18,5 +18,12 @@ class PostController {
             }
         );
     }
+    async deleteTask(req, res) {
+        const taskId = req.params.id;
+        db.query("DELETE FROM tasks WHERE ID ($1)", [taskId], (err, result) => {
+            if (err) throw err;
+            res.redirect("/");
+        });
+    }
 }
 module.exports = new PostController();

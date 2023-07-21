@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Document</title>
     </head>
     <body>
@@ -20,8 +21,15 @@
                     const tasksList = document.getElementById("tasks");
                     tasks.forEach((task) => {
                         const li = document.createElement("li");
-                        li.innerText = task.task;
+                        const button = document.createElement("button");
+                        button.setAttribute("data-id", task.id);
+                        button.innerHTML = task.task;
+                        li.appendChild(button);
                         tasksList.appendChild(li);
+
+                        button.addEventListener("click", (event) => {
+                            const taskId = event.target.dataset.id;
+                        });
                     });
                 });
         </script>

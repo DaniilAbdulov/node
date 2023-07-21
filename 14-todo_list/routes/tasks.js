@@ -5,5 +5,6 @@ const postController = require("../controllers/tasks");
 
 router.get("/", postController.getTasks);
 router.post("/", postController.createTask);
+router.delete("/", postController.deleteTask);
 
 module.exports = router;
