@@ -93,7 +93,11 @@
                 font-weight: inherit;
             }
 
-            body {
+            .content {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -133,8 +137,10 @@
             }
             .tasks_content {
                 width: 300px;
-                max-height: 105px;
-                overflow: scroll;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
                 border: 1px solid black;
                 border-radius: 5px;
                 padding: 10px;
@@ -143,20 +149,22 @@
         </style>
     </head>
     <body>
-        <h1>This is my first TO DO list</h1>
-        <form action="/tasks" method="post">
-            <input
-                type="text"
-                required
-                name="task"
-                class="tasks_content"
-                id=""
-            />
-            <button class="form-btn" type="submit">Добавить</button>
-        </form>
-        <h2>To Do list</h2>
-        <div class="tasks_content">
-            <ul id="tasks"></ul>
+        <div class="content">
+            <h1>This is my first TO DO list</h1>
+            <form action="/tasks" method="post">
+                <input
+                    type="text"
+                    required
+                    name="task"
+                    class="tasks_content"
+                    id=""
+                />
+                <button class="form-btn" type="submit">Добавить</button>
+            </form>
+            <h2>To Do list</h2>
+            <div class="tasks_content">
+                <ul id="tasks"></ul>
+            </div>
         </div>
         <script>
             fetch("/tasks")
