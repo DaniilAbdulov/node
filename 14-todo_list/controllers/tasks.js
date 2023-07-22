@@ -7,19 +7,6 @@ class TaskController {
             res.send(result.rows);
         });
     }
-
-    async getOneTask(req, res) {
-        const taskId = req.params.taskId;
-        db.query(
-            "SELECT * FROM tasks WHERE id = $1", // Исправлено: id вместо ID
-            [taskId],
-            (err, result) => {
-                if (err) throw err;
-                res.send(result.rows[0]);
-            }
-        );
-    }
-
     async createTask(req, res) {
         const { task } = req.body;
         db.query(
@@ -28,20 +15,28 @@ class TaskController {
             (err, result) => {
                 if (err) throw err;
                 res.redirect("/");
-                // res.send({ message: "Task created successfully" });
             }
         );
     }
-
+    async getOneTask(req, res) {
+        const taskId = req.params.tasksId;
+        db.query(
+            "SELECT * FROM tasks WHERE id = ($1)",
+            [taskId],
+            (err, result) => {
+                if (err) throw err;
+                res.send(result.rows);
+            }
+        );
+    }
     async deleteTask(req, res) {
-        const taskId = req.params.taskId;
+        const taskId = req.params.tasksId;
         db.query(
             "DELETE FROM tasks WHERE id = ($1)",
             [taskId],
             (err, result) => {
                 if (err) throw err;
-                // res.redirect("/");
-                res.send({ message: "Task deleted successfully" });
+                res.redirect("/");
             }
         );
     }

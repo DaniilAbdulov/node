@@ -3,8 +3,8 @@ const router = new Router();
 const taskController = require("../controllers/tasks");
 
 router.get("/", taskController.getTasks);
-router.get("/:taskId", taskController.getOneTask);
 router.post("/", taskController.createTask);
-router.delete("/:taskId", taskController.deleteTask);
+router.get("/:tasksId", taskController.getOneTask);
+router.delete("/:tasksId", taskController.deleteTask);
 
 module.exports = router;
