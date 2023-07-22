@@ -1,0 +1,5 @@
+npm init -y
+npm i express pg nodemon cors 
+В файле db.js проверить настройки
+В файле createTable выполнить node createTable
+В app.js выполнить node app.js
