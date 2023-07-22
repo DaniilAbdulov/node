@@ -1,10 +1,7 @@
-//C:\Users\Daniil\Documents\node\14-todo_list\routes\index.js
 const express = require("express");
-const tasksRouter = require("./tasks");
-
-const { getHomePage } = require("../controllers/getHomePage");
-
 const router = express.Router();
+const { getHomePage } = require("../controllers/getHomePage");
+const tasksRouter = require("./tasks");
 
 router.get("/", getHomePage);
 router.use("/tasks", tasksRouter);

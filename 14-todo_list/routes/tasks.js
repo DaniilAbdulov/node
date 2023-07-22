@@ -1,10 +1,10 @@
-//C:\Users\Daniil\Documents\node\14-todo_list\routes\tasks.js
 const Router = require("express");
 const router = new Router();
-const postController = require("../controllers/tasks");
+const taskController = require("../controllers/tasks");
 
-router.get("/", postController.getTasks);
-router.post("/", postController.createTask);
-router.delete("/:id", postController.deleteTask);
+router.get("/", taskController.getTasks);
+router.get("/:taskId", taskController.getOneTask);
+router.post("/", taskController.createTask);
+router.delete("/:taskId", taskController.deleteTask);
 
 module.exports = router;

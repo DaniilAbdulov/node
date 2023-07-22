@@ -29,6 +29,20 @@
 
                         button.addEventListener("click", (event) => {
                             const taskId = event.target.dataset.id;
+                            fetch(`/tasks/${taskId}`, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({ taskId: taskId }),
+                            })
+                                .then((response) => response.json())
+                                .then((data) => {
+                                    // Обработка ответа от сервера
+                                })
+                                .catch((error) => {
+                                    console.error("Ошибка:", error);
+                                });
                         });
                     });
                 });
