@@ -18,17 +18,6 @@ class TaskController {
             }
         );
     }
-    async getOneTask(req, res) {
-        const taskId = req.params.tasksId;
-        db.query(
-            "SELECT * FROM tasks WHERE id = ($1)",
-            [taskId],
-            (err, result) => {
-                if (err) throw err;
-                res.send(result.rows);
-            }
-        );
-    }
     async deleteTask(req, res) {
         const taskId = req.params.tasksId;
         db.query(
