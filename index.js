@@ -13,14 +13,13 @@
 Для решения этой задачи можно использовать следующие SQL-запросы:
 
 1. Часть 1: Найти имя пользователя с наибольшим количеством рейтингов:
-```sql
-SELECT name AS results
-FROM Users u
-JOIN MovieRating mr ON u.user_id = mr.user_id
-GROUP BY u.user_id
+SELECT u.name AS result
+FROM users AS u
+JOIN movierating AS mr ON u.user_id = mr.user_id
+GROUP BY u.name
 HAVING COUNT(*) = (
     SELECT COUNT(*)
-    FROM MovieRating
+    FROM movierating
     GROUP BY user_id
     ORDER BY COUNT(*) DESC
     LIMIT 1
@@ -28,21 +27,21 @@ HAVING COUNT(*) = (
 ORDER BY name ASC
 LIMIT 1;
 ```
-
+UNION ALL
 2. Часть 2: Найти название фильма с самым высоким средним рейтингом в феврале 2020 года:
-```sql
-SELECT title AS results
+
+SELECT m.title AS results
 FROM Movies m
 JOIN MovieRating mr ON m.movie_id = mr.movie_id
-WHERE YEAR(created_at) = 2020 AND MONTH(created_at) = 2
-GROUP BY m.movie_id
+WHERE EXTRACT(YEAR FROM created_at) = 2020 AND EXTRACT(MONTH FROM created_at) = 2
+GROUP BY m.title
 HAVING AVG(rating) = (
-    SELECT AVG(rating)
-    FROM MovieRating
-    WHERE YEAR(created_at) = 2020 AND MONTH(created_at) = 2
-    GROUP BY movie_id
-    ORDER BY AVG(rating) DESC
-    LIMIT 1
+SELECT AVG(rating)
+FROM MovieRating
+WHERE EXTRACT(YEAR FROM created_at) = 2020 AND EXTRACT(MONTH FROM created_at) = 2
+GROUP BY movie_id
+ORDER BY AVG(rating) DESC
+LIMIT 1
 )
 ORDER BY title ASC
 LIMIT 1;
